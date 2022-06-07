@@ -93,7 +93,7 @@ $(document).on('click', '#buttonEdit', function () {
         $('<option>').text(role.shortRole).attr({
             "id": role.id,
             "value": role.name,
-            "selected": selected,
+            "selected": selected
         })
     )
         selected = false
@@ -192,11 +192,16 @@ $(document).on('click', '#submit-delete', async function () {
 
 $(document).on('click', '#new-user-tab', function () {
     $(`#newUserRoles`).empty()
+    let newSelected = false
     $.each(allRoles, function(i, role) {
+        if (role.name === "ROLE_USER") {
+            newSelected = true
+        }
         $(`#newUserRoles`).append(
             $('<option>').text(role.shortRole).attr({
                 "id": role.id,
                 "value": role.name,
+                "selected": newSelected
             })
         )
     })
